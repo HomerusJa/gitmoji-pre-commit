@@ -1,0 +1,50 @@
+name: 📚 Documentation
+description: Suggest improvements or report issues with gitmoji-pre-commit documentation
+title: "📚 Docs: "
+labels: ["documentation", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        🙏 Thanks for helping us improve our documentation! Please provide as much detail as possible about your suggestion or issue.
+  - type: dropdown
+    id: type
+    attributes:
+      label: 📝 Type of Documentation Issue
+      description: What type of documentation issue is this?
+      options:
+        - Missing Documentation
+        - Unclear Documentation
+        - Incorrect Documentation
+        - Enhancement Suggestion
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: 🤔 What needs to be changed?
+      description: Please describe what documentation needs to be added, clarified, or fixed
+      placeholder: Provide details about the documentation changes needed
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: 📍 Documentation Location
+      description: If applicable, where is the current documentation located?
+      placeholder: e.g., README.md, docs/usage.md, etc.
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: 💡 Suggested Changes
+      description: If you have specific suggestions for the documentation, please provide them here
+      placeholder: Your suggested wording or content
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 📜 Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

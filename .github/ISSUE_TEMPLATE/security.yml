@@ -1,0 +1,72 @@
+name: 🔒 Security Issue
+description: Report a security vulnerability in gitmoji-pre-commit
+title: "🔒 Security: "
+labels: ["security", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ⚠️ IMPORTANT: If this is a critical security vulnerability, please report it directly to the maintainers following our security policy instead of creating a public issue.
+  - type: dropdown
+    id: severity
+    attributes:
+      label: 🚨 Severity Level
+      description: How severe is this security issue?
+      options:
+        - Critical
+        - High
+        - Medium
+        - Low
+        - Informational
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: 🔍 Vulnerability Description
+      description: Please describe the security vulnerability in detail
+      placeholder: Explain the security issue and its potential impact
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 📝 Steps to Reproduce
+      description: Please provide detailed steps to reproduce the vulnerability
+      placeholder: |
+        1. Install version '...'
+        2. Configure with '...'
+        3. Execute '...'
+        4. Observe vulnerability
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: 💥 Potential Impact
+      description: What is the potential impact of this vulnerability?
+      placeholder: Describe what an attacker could do if they exploited this vulnerability
+    validations:
+      required: true
+  - type: textarea
+    id: mitigation
+    attributes:
+      label: 🛡️ Suggested Mitigation
+      description: If you have suggestions for fixing the vulnerability, please share them
+      placeholder: Describe potential fixes or mitigations
+  - type: input
+    id: affected-versions
+    attributes:
+      label: 📦 Affected Versions
+      description: Which versions of gitmoji-pre-commit are affected?
+      placeholder: e.g., 1.0.0 through 1.2.3
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 📜 Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

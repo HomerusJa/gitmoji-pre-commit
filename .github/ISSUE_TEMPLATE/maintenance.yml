@@ -1,0 +1,68 @@
+name: 🔧 Maintenance
+description: Report or suggest maintenance tasks for gitmoji-pre-commit
+title: "🔧 Maintenance: "
+labels: ["maintenance", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        🙏 Thanks for helping maintain the project! Please provide details about the maintenance task.
+  - type: dropdown
+    id: type
+    attributes:
+      label: 🔨 Type of Maintenance
+      description: What type of maintenance is needed?
+      options:
+        - Dependency Update
+        - Code Refactoring
+        - Performance Optimization
+        - Technical Debt
+        - Testing Improvements
+        - CI/CD Improvements
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: other-type
+    attributes:
+      label: 🔧 Other Maintenance Type
+      description: If you selected "Other", please specify the type of maintenance
+      placeholder: e.g., Security hardening, Documentation restructuring
+    validations:
+      required: false
+  - type: textarea
+    id: description
+    attributes:
+      label: 📝 Description
+      description: Please describe the maintenance task in detail
+      placeholder: Explain what needs to be maintained or improved
+    validations:
+      required: true
+  - type: textarea
+    id: motivation
+    attributes:
+      label: 💡 Motivation
+      description: Why is this maintenance task important?
+      placeholder: Explain the benefits and impact of this maintenance work
+    validations:
+      required: true
+  - type: textarea
+    id: implementation
+    attributes:
+      label: 🛠️ Implementation Details
+      description: If you have specific ideas about how to implement this, please share them
+      placeholder: Describe your proposed approach or solution
+  - type: textarea
+    id: risks
+    attributes:
+      label: ⚠️ Potential Risks
+      description: Are there any risks or concerns to consider?
+      placeholder: Describe any potential impacts or dependencies
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 📜 Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

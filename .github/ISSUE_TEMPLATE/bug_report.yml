@@ -1,0 +1,61 @@
+name: 🐛 Bug Report
+description: File a bug report for gitmoji-pre-commit
+title: "🐛 Bug: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        🙏 Thanks for taking the time to fill out this bug report! Please make sure to provide as much detail as possible.
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 🤔 What happened?
+      description: Also tell us, what did you expect to happen?
+      placeholder: Describe the bug and the expected behavior
+    validations:
+      required: true
+  - type: dropdown
+    id: version
+    attributes:
+      label: 📦 Version
+      description: What version of gitmoji-pre-commit are you using?
+      options:
+        - Latest Release
+        - Development (main branch)
+        - Other (please specify in description)
+    validations:
+      required: true
+  - type: input
+    id: python-version
+    attributes:
+      label: 🐍 Python Version
+      description: What version of Python are you using?
+      placeholder: ex. Python 3.11.9
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 📝 Steps to Reproduce
+      description: Please provide detailed steps to reproduce the issue
+      placeholder: |
+        1. Install package '...'
+        2. Run command '...'
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: 📄 Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code.
+      render: shell
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: 📜 Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
