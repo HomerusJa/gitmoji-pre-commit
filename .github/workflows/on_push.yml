@@ -17,3 +17,12 @@ jobs:
         uses: ./.github/actions/pre-commit
         with:
           py-version: '3.11'
+
+  tests:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run tests
+        uses: ./.github/actions/test
