@@ -1,45 +1,40 @@
-name: Pre-commit checks
+name: 'Pre-commit Composite Action'
+description: 'Run pre-commit checks and handle changes'
 
-on:
-  push:
-    branches: ['*']  # Run on all branches
-  pull_request:
-    branches: ['*']  # Run on pull requests to any branch
-  workflow_dispatch:
-  workflow_call:
+inputs:
+  py-version:
+    description: 'Python version to use'
+    default: '3.11'
 
-jobs:
-  pre-commit:
-    runs-on: ubuntu-latest
-    env:
-      PY: "3.11"
-    steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-
+runs:
+  using: 'composite'
+  steps:
     - name: Install uv
       uses: astral-sh/setup-uv@v3.2.2
       with:
         enable-cache: true
 
     - name: Install python
-      run: uv python install ${{ env.PY }}
+      shell: bash
+      run: uv python install ${{ inputs.py-version }}
 
     - uses: actions/cache@v3
       with:
         path: ~/.cache/pre-commit
-        key: pre-commit|${{ env.PY }}|${{ hashFiles('.pre-commit-config.yaml') }}
+        key: pre-commit|${{ inputs.py-version }}|${{ hashFiles('.pre-commit-config.yaml') }}
 
     - name: Run pre-commit
+      shell: bash
       run: uv run pre-commit run --all-files --show-diff-on-failure || true
 
     - name: Check for changes
+      shell: bash
       id: git-check
       run: |
         git diff --exit-code || echo "changes=true" >> $GITHUB_OUTPUT
 
     - name: Commit changes
+      shell: bash
       if: steps.git-check.outputs.changes == 'true'
       run: |
         git config --local user.email "action@github.com"
@@ -48,8 +43,9 @@ jobs:
         git commit -m ":robot: Apply pre-commit changes"
 
     - name: Push changes
+      shell: bash
       if: steps.git-check.outputs.changes == 'true'
       uses: ad-m/github-push-action@v0.8.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref_name }}  # Push changes to the branch that triggered the workflow
+        branch: ${{ github.ref_name }}
