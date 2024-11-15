@@ -9,7 +9,9 @@ classifiers = [
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
 ]
-dependencies = [  ]
+dependencies = [
+  "requests>=2.32.3",
+]
 
 [tool.ruff]
 line-length = 88
@@ -35,12 +37,68 @@ lint.ignore = [
 ]
 lint.per-file-ignores."__init__.py" = [ "D104" ] # Missing docstring in public package
 
+lint.isort.known-first-party = [ "gitmoji_pre_commit" ]
+
 # __init__.py files are not required to have docstrings
 lint.pydocstyle.convention = "google"
 lint.pydocstyle.ignore-decorators = [ "property", "reflex.var" ]
 
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = """
+    --cov=gitmoji_pre_commit
+    --cov-report=term-missing
+    --cov-report=xml:coverage.xml
+    --cov-report=html:htmlcov
+    --cov-branch
+    --no-cov-on-fail
+    -v
+    --durations=10
+    --color=yes
+"""
+testpaths = [ "tests" ]
+pythonpath = [ "src" ]
+filterwarnings = [
+  "error",
+  "ignore::DeprecationWarning",
+  "ignore::UserWarning",
+]
+markers = [
+  "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+  "integration: marks tests as integration tests",
+]
+
+[tool.coverage.run]
+branch = true
+source = [ "gitmoji_pre_commit" ]
+omit = [
+  "tests/*",
+  "**/__init__.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "def __repr__",
+  "if self.debug:",
+  "raise NotImplementedError",
+  "if __name__ == .__main__.:",
+  "pass",
+  "raise ImportError",
+]
+fail_under = 90
+show_missing = true
+sort = "Cover"
+
+[tool.coverage.html]
+directory = "htmlcov"
+
 [dependency-groups]
 dev = [
   "pre-commit>=4.0.1",
+  "pytest>=8.3.3",
+  "pytest-cov>=4.1.0",
+  "pytest-sugar>=1.0.0",
+  "responses>=0.25.3",
   "ruff>=0.7.3",
 ]
