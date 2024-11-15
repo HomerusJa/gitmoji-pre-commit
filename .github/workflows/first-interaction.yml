@@ -1,0 +1,44 @@
+name: First Interaction
+
+on:
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened]
+
+jobs:
+  welcome:
+    runs-on: ubuntu-latest
+    steps:
+      - name: First interaction
+        uses: actions/first-interaction@v1
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-message: |
+            # 👋 Welcome to gitmoji-pre-commit!
+
+            Thank you for opening your first issue! We're excited to have you here! 🎉
+
+            I can see you're using our issue template, which is great! A few quick tips:
+            - 📝 The more details you provide, the better we can help
+            - 🔍 Feel free to join discussions if you want to learn more
+            - ⭐ Consider starring the repo if you find it useful
+
+            Please make sure you've read our [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md) to ensure a positive experience for everyone.
+
+            Happy contributing! 🚀
+
+          pr-message: |
+            # 🎉 Welcome to gitmoji-pre-commit!
+
+            Wow! Your first pull request - this is exciting! 🌟
+
+            A few things that will help get your PR merged faster:
+            - ✅ Make sure all tests are passing
+            - 📖 Double-check our contribution guidelines
+            - 🔄 Keep your PR focused on a single concern
+            - 💬 Respond to any reviews promptly
+
+            Our [Code of Conduct](../blob/main/CODE_OF_CONDUCT.md) helps keep this community welcoming for everyone.
+
+            Looking forward to reviewing your contribution! 🚀
