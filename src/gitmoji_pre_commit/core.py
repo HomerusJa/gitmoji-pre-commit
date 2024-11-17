@@ -73,7 +73,7 @@ def check_commit_message(
 ) -> tuple[bool, str]:
     """Check if the commit message contains a gitmoji."""
     if only_emoji and only_code:
-        raise ValueError("only_emoji and only_code cannot both be True")
+        return False, "only_emoji and only_code cannot both be True"
 
     match = GITMOJI_REGEX.search(commit_message)
     if not match:

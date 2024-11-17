@@ -1,0 +1,6 @@
+- id: gitmoji-pre-commit
+  name: Gitmoji Commit Message Check
+  description: Ensures commit messages follow the gitmoji convention
+  entry: gitmoji-pre-commit run
+  language: python
+  stages: [commit-msg]
