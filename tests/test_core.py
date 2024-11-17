@@ -146,7 +146,6 @@ def test_check_commit_message_emoji_code_flags(
 
 def test_check_commit_message_mutually_exclusive_flags() -> None:
     """Test if the only_emoji and only_code flags are mutually exclusive."""
-    with pytest.raises(
-        ValueError, match="only_emoji and only_code cannot both be True"
-    ):
-        check_commit_message("test", only_emoji=True, only_code=True)
+    success, message = check_commit_message("test", only_emoji=True, only_code=True)
+    assert not success
+    assert message == "only_emoji and only_code cannot both be True"
