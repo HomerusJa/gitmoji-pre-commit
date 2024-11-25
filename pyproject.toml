@@ -8,12 +8,23 @@ classifiers = [
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
 ]
 dependencies = [
   "requests>=2.32.3",
 ]
 
 scripts.gitmoji-pre-commit = "gitmoji_pre_commit.cli:main"
+
+[dependency-groups]
+dev = [
+  "pre-commit>=4.0.1",
+  "pytest>=8.3.3",
+  "pytest-cov>=4.1.0",
+  "pytest-sugar>=1.0.0",
+  "responses>=0.25.3",
+  "ruff>=0.7.3",
+]
 
 [tool.ruff]
 line-length = 88
@@ -95,13 +106,3 @@ sort = "Cover"
 
 [tool.coverage.html]
 directory = "htmlcov"
-
-[dependency-groups]
-dev = [
-  "pre-commit>=4.0.1",
-  "pytest>=8.3.3",
-  "pytest-cov>=4.1.0",
-  "pytest-sugar>=1.0.0",
-  "responses>=0.25.3",
-  "ruff>=0.7.3",
-]
